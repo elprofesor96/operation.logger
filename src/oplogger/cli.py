@@ -57,7 +57,7 @@ def status() -> None:
 
 
 @app.command()
-def parse(
+def report(
     directory: Annotated[
         Optional[Path],
         typer.Argument(help="Path to oplogs/ directory. Defaults to ./oplogs"),
