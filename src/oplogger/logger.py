@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import contextlib
 import fcntl
 import os
 import re
@@ -358,7 +359,5 @@ def _write_header(path: Path, meta: dict[str, str]) -> None:
 
 
 def _tmux(*args: str) -> None:
-    try:
+    with contextlib.suppress(FileNotFoundError):
         subprocess.run(["tmux", *args], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    except FileNotFoundError:
-        pass
