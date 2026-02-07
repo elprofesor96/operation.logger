@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Terminal session logger for pentesters and bug bounty hunters"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 authors = [
     { name = "Your Name", email = "you@example.com" },
 ]
@@ -60,9 +60,13 @@ packages = ["src/oplogger"]
 [tool.ruff]
 target-version = "py310"
 src = ["src", "tests"]
+line-length = 120
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "A", "SIM", "RUF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["oplogger"]
 
 [tool.mypy]
 python_version = "3.10"

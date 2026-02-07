@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 
@@ -28,7 +28,7 @@ def _version_callback(value: bool) -> None:
 @app.callback()
 def main(
     version: Annotated[
-        Optional[bool],
+        bool | None,
         typer.Option("--version", "-v", help="Show version.", callback=_version_callback, is_eager=True),
     ] = None,
 ) -> None:
@@ -59,7 +59,7 @@ def status() -> None:
 @app.command()
 def report(
     directory: Annotated[
-        Optional[Path],
+        Path | None,
         typer.Argument(help="Path to oplogs/ directory. Defaults to ./oplogs"),
     ] = None,
 ) -> None:
