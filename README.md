@@ -87,4 +87,8 @@ pytest
 
 ## License
 
-MIT
+## Support
+
+If you find this tool useful and want to support its development and my work:
+
+[![Ko-fi](https://img.shields.io/badge/Ko--fi-Buy%20me%20a%20coffee-ff5f5f?logo=ko-fi&logoColor=white)](https://ko-fi.com/elprofesor96)
