@@ -28,13 +28,15 @@ _ANSI = re.compile(
 )
 _CTRL = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
 
+_PS = r"\$#%"  # prompt-terminator chars: bash/sh ($), root (#), zsh (%)
+
 _PROMPTS: list[re.Pattern[str]] = [
-    re.compile(r"^[\w.-]+@[\w.-]+:[^\$#]*[\$#]\s"),
-    re.compile(r"^\[[\w.-]+@[\w.-]+\s[^\]]*\][\$#]\s"),
-    re.compile(r"^[\$#]\s"),
-    re.compile(r"^\([\w.-]+\)\s*[\w.-]+@[\w.-]+:[^\$#]*[\$#]\s"),
-    re.compile(r"^.*[\$#]\s(?=\S)"),
-    re.compile(r"^└─[\$#]\s"),
+    re.compile(rf"^[\w.-]+@[\w.-]+:[^{_PS}]*[{_PS}]\s"),
+    re.compile(rf"^\[[\w.-]+@[\w.-]+\s[^\]]*\][{_PS}]\s"),
+    re.compile(rf"^[{_PS}]\s"),
+    re.compile(rf"^\([\w.-]+\)\s*[\w.-]+@[\w.-]+:[^{_PS}]*[{_PS}]\s"),
+    re.compile(rf"^.*[{_PS}]\s(?=\S)"),
+    re.compile(rf"^└─[{_PS}]\s"),
     re.compile(r"^>\s"),
     re.compile(r"^➜\s+\S"),
     re.compile(r"^>>>\s"),
@@ -292,7 +294,7 @@ def _render_commands(logs: list[PaneLog]) -> str:
         o.append(f"## {p.label}\n")
         for b in p.blocks:
             if b.command:
-                m = "🔴" if b.is_tool else "-"
+                m = "- 🔴" if b.is_tool else "-"
                 o.append(f"{m} `{b.command}`")
         o.append("")
     return "\n".join(o)
