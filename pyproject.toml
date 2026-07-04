@@ -32,7 +32,7 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "typer>=0.23.2",
+    "typer>=0.26.8",
     "rich>=15.0.0",
 ]
 
